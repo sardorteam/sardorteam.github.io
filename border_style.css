@@ -1,0 +1,71 @@
+body {
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 12px;
+  
+}
+.card-img-top {
+ cursor: pointer;
+}
+.card-grop {
+  margin-right: 3px;
+}
+.card {
+  margin-right: 1%;
+  margin-top: 1%;
+}
+.tests {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	background-color: #152036;
+	color: #fff;
+	text-transform: uppercase;
+	font-style: italic;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.text2{
+	margin-left: 10px;
+}
+
+.text1 {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 30px;
+}
+
+.tests p a:hover {
+    color: red;
+}
+
+footer {
+	margin-top: 5px;
+    background-color: #152036;
+    text-align: center;
+}
+
+footer p {
+	margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 25px 0px;
+    color: #fff;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+footer p a,
+footer p a:hover {
+    color: #f5a425;
+}
+
+@media screen and (max-width: 767px) {
+  footer p {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.25px;
+  }
+}
