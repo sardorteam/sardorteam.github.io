@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaplashilu Sardor | Rus tili darslari</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #12141D;
+            --surface-color: #1E212D;
+            --accent-color: #FFD700;
+            --text-main: #FFFFFF;
+            --text-muted: #A0A4B8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-on-load {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(18, 20, 29, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-color);
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- БЛОК С ФОНОВОЙ ФОТОГРАФИЕЙ --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 50px;
+            
+            /* Замени 'tvoe-foto.jpg' на название твоей картинки */
+            /* linear-gradient делает красивое темное затемнение поверх фото */
+            background: linear-gradient(rgba(18, 20, 29, 0.8), rgba(18, 20, 29, 0.95)), url('prof.jpeg') center/cover no-repeat;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        section {
+            padding: 100px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        /* --- ФОНЫ ДЛЯ СЕКЦИЙ --- */
+#about {
+    background: linear-gradient(rgba(18, 20, 29, 0.85), rgba(18, 20, 29, 0.95)), url('podcast.jpeg') center/cover no-repeat;
+    background-attachment: fixed;
+}
+#cases {
+    background: linear-gradient(rgba(18, 20, 29, 0.9), rgba(18, 20, 29, 0.95)), url('smile.jpeg') center/cover no-repeat;
+    background-attachment: fixed;
+}
+#reviews {
+    background: linear-gradient(rgba(18, 20, 29, 0.85), rgba(18, 20, 29, 0.95)), url('sen916.jpeg') center/cover no-repeat;
+    background-attachment: fixed;
+}
+#pricing {
+    background: linear-gradient(rgba(18, 20, 29, 0.9), rgba(18, 20, 29, 0.98)), url('prof.jpeg') center/cover no-repeat;
+    background-attachment: fixed;
+}
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: rgba(30, 33, 45, 0.85);
+    backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .price-card {
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .price-card.popular {
+            border-color: var(--accent-color);
+            position: relative;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 20px 0;
+        }
+
+        .price-card ul {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .price-card ul li {
+            margin-bottom: 10px;
+            color: var(--text-muted);
+        }
+
+        .price-card ul li::before {
+            content: "✓ ";
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* --- СОЦСЕТИ --- */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--bg-color);
+            background-color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        .social-btn.inst { background-color: #E1306C; color: white; }
+        .social-btn.tg { background-color: #0088cc; color: white; }
+        .social-btn.yt { background-color: #FF0000; color: white; }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: var(--surface-color);
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            /* Отключаем параллакс на телефонах */
+    .hero, #about, #cases, #reviews, #pricing {
+        background-attachment: scroll;
+    }
+            .hero h1 { font-size: 2.2rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            nav { display: none; }
+            header { justify-content: center; }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Gaplashilu Sardor</div>
+        <nav>
+            <a href="#about">Men haqimda</a>
+            <a href="#cases">Natijalar</a>
+            <a href="#reviews">Izohlar</a>
+            <a href="#pricing">Tariflar</a>
+        </nav>
+    </header>
+
+    <section class="hero animate-on-load">
+        <h1>Haqiqiy rus tilini <span>qoidalarsiz</span> o'rganing!</h1>
+        <p>Men 5 yillik o'qitish tajribasiga ega rus tili so'zlashuvchisiman. Grammatikani yodlatmasdan, zamonaviy sleng va jonli muloqot orqali ishonch bilan gapirishni o'rgataman.</p>
+        <a href="#pricing" class="btn">O'qishni boshlash</a>
+    </section>
+
+    <section id="about" class="reveal">
+        <h2 class="section-title">Nega mening darslarim natija beradi?</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>Salom! Mening ismim Sardor. 5 yildan beri rus tilidan dars beraman va o'quvchilarimiz qanday qiyinchiliklarga duch kelishini juda yaxshi bilaman.</p>
+                <p>Zerikarli sovet darsliklarini unuting. Men murakkab grammatikani (fe'l turlari, kelishiklar, predloglar) hayotiy misollar, rep treklar tahlili va zamonaviy sleng orqali tushuntiraman. Men bilan siz qoidalarni shunchaki bilish uchun yodlamaysiz, balki ruscha o'ylashni va gapirishni boshlaysiz.</p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <h3>5+</h3>
+                        <p>Yillik tajriba</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>100%</h3>
+                        <p>Amaliyot va muloqot</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="text-align: center;">
+                <h3 style="color: var(--text-main);">Mening yondashuvim</h3>
+                <p style="color: var(--text-muted); margin-top: 15px;">Faqat zamonaviy rus tili. A1-A2 bazadan tortib to erkin suhbatgacha. Men sizning asosiy xatolaringizni bilaman va birinchi darsdanoq to'g'ri talaffuzni yo'lga qo'yaman.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cases" class="reveal">
+        <h2 class="section-title">O'quvchilar natijalari</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3>Noldan A2 bazagacha</h3>
+                <p><strong>Holat:</strong> Umuman baza yo'q, gapirishga qo'rquv bor edi.</p>
+                <p><strong>Nima qildik:</strong> Predloglar, asosiy kelishiklar va kundalik iboralarni amaliyotda ko'rib chiqdik.</p>
+                <p><strong>Natija:</strong> 2.5 oydan so'ng o'quvchi rus tilida ishga kirish suhbatidan o'zi o'tdi.</p>
+            </div>
+            <div class="card">
+                <h3>Til to'sig'ini sindirish</h3>
+                <p><strong>Holat:</strong> O'quvchi hamma narsani tushunar, lekin javob berishga uyalardi.</p>
+                <p><strong>Nima qildik:</strong> Qiziqarli mavzular va aktual kontentlar orqali faqat gaplashdik.</p>
+                <p><strong>Natija:</strong> Xato qilish qo'rquvisiz, russlar bilan erkin muloqot.</p>
+            </div>
+            <div class="card">
+                <h3>Murakkab grammatika</h3>
+                <p><strong>Holat:</strong> Qo'shimchalar va kelishiklarda doimiy chalkashlik.</p>
+                <p><strong>Nima qildik:</strong> Jonli nutq ritmi va assotsiatsiyalar orqali qoidalarni tushuntirdim.</p>
+                <p><strong>Natija:</strong> To'g'ri qo'shimchalarni o'ylamasdan, avtomatik tarzda ishlata boshladi.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="reveal">
+        <h2 class="section-title">O'quvchilar nima deydi?</h2>
+        <div class="grid-3">
+            <div class="card">
+                <p style="font-style: italic; margin-bottom: 15px;">"Sardor aka hammasini aniq va tushunarli qilib tushuntiradi! Nihoyat В/На predloglari farqini tushundim, darslar prosto бомба жи есть!"</p>
+                <h4 style="color: var(--accent-color);">— Javohir, 20 yosh</h4>
+            </div>
+            <div class="card">
+                <p style="font-style: italic; margin-bottom: 15px;">"Ko'p joyda o'qiganman, lekin faqat shu yerda gapirishdan qo'rqmay qo'ydim. Grammatikaga yondashuv juda zo'r - faqat razgovor uchun muhim narsalar, ortiqcha informatsiyalar yo'q."</p>
+                <h4 style="color: var(--accent-color);">— Ra'no, 28 yosh</h4>
+            </div>
+            <div class="card">
+                <p style="font-style: italic; margin-bottom: 15px;">"Darslar qanday o'tganini sezmay qolasiz. Hayotiy vaziyatlarni, slenglarni o'rganamiz. Hozir rus hamkasblarim bilan bemalol gaplashaman."</p>
+                <h4 style="color: var(--accent-color);">— Behruz, 25 yosh</h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="reveal">
+        <h2 class="section-title">O'quv narxlari</h2>
+        <div class="grid-3">
+            <div class="card price-card">
+                <h3>Online Maktab (boshlang'ichlar uchun emas) </h3>
+                <div class="price">400 000 so'm <span>/ oy</span></div>
+                <ul>
+                    <li>Til to'sig'ini olib tashlash va aksent ustida ishlash</li>
+                    <li>Zamonaviy sleng va madaniyat </li>
+                    <li>80% vaqt jonli muloqot</li>
+                    <li>O'yinlar orqali o'qitish</li>
+                </ul>
+                <a href="https://t.me/manager_inst?text=Assalomu Aleykum, men Online Maktabingizga a'zo bo'lish uchun to'lov qilmoqchi edim." class="btn" style="display: block; margin-top: 20px; font-size: 1rem;">To'lov qilish</a>
+            </div>
+            <div class="card price-card popular">
+                <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--accent-color); color: var(--bg-color); padding: 5px 15px; border-radius: 10px; font-weight: bold; font-size: 0.8rem;">XIT</div>
+                <h3>"Baza"ni o'rganamiz (A1-A2)</h3>
+                <div class="price">1 000 000 so'm <span>/ 2 oy</span></div>
+                <ul>
+                    <li>Talaffuzni to'g'rilash</li>
+                    <li>Gapirish uchun muhim bo'lgan grammatika (suvsiz)</li>
+                    <li>Ko'p uchraydigan xatolarni tahlil qilish</li>
+                    <li>Guruh darslari / Intensiv o'qish</li>
+                </ul>
+                <a href="https://t.me/manager_inst?text=Assalomu Aleykum, menga BAZA tarifi maqul keldi, to'lov qilmoqchi edim." class="btn" style="display: block; margin-top: 20px; font-size: 1rem;">To'lov qilish</a>
+            </div>
+            <div class="card price-card">
+                <h3>Individual</h3>
+                <div class="price">1 000 000 so'm <span>/ oy</span></div>
+                <ul>
+                    <li>Shaxsiy dastur</li>
+                    <li>Qulay dars jadvali (o'zingiz tanlaysiz)</li>
+                    <li>Sizning maqsadingizga fokus</li>
+                    <li>Telegramda 24/7 yordam</li>
+                    <li>Haftasiga 4 kun dars</li>
+                    <li>2 soatdan</li>
+                </ul>
+                <a href="https://t.me/manager_inst?text=Assalomu Aleykum, men Individual o'qimoqchi edim. Darslar kuni va soatini gaplashib olsak yaxshi bo'lar edi" class="btn" style="display: block; margin-top: 20px; font-size: 1rem;">To'lov qilish</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h2 style="color: var(--accent-color); margin-bottom: 10px;">Gaplashilu Sardor</h2>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">Rus tili o'qituvchisi</p>
+        
+        <!-- БЛОК С СОЦСЕТЯМИ -->
+        <div class="social-links">
+            <a href="https://www.instagram.com/gaplashilu_rustili/" target="_blank" class="social-btn inst">Instagram</a>
+            <a href="https://t.me/gaplashilu_rustili" target="_blank" class="social-btn tg">Telegram kanal</a>
+            <a href="https://t.me/gaplashilu_chat" target="_blank" class="social-btn tg">Telegram guruh</a>
+            <a href="https://www.youtube.com/@sardoor18" target="_blank" class="social-btn yt">YouTube</a>
+        </div>
+        
+        <p style="color: var(--text-muted); margin-top: 30px;">© 2026 Barcha huquqlar himoyalangan</p>
+    </footer>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+</html>
