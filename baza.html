@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"Baza"ni o'rganamiz - Rus tili kursi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f1115;
+            --card-bg: #1a1d24;
+            --accent: #ffcc00;
+            --accent-hover: #e6b800;
+            --text-main: #ffffff;
+            --text-muted: #a0a5b1;
+            --border-color: #2d313a;
+            --negative-color: #ff4757;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3 {
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: var(--text-main);
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Block */
+        .hero {
+            text-align: center;
+            padding: 120px 0 60px;
+            position: relative;
+        }
+        
+        .hero-image {
+            width: 100%;
+            max-width: 380px;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 24px;
+            margin: 0 auto 35px;
+            background-color: var(--card-bg);
+            display: block;
+            border: 2px dashed var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-top: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 19px;
+            max-width: 640px;
+            margin: 0 auto 30px;
+        }
+
+        /* Feature Lists (A & B points) */
+        .features-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .features-list li {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 16px;
+            border-left: 5px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .features-list li:hover {
+            transform: translateX(5px);
+        }
+
+        .features-list li.negative {
+            border-left-color: var(--negative-color);
+        }
+
+        .emoji {
+            font-size: 28px;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* About Author */
+        .author-box {
+            background: var(--card-bg);
+            padding: 50px 40px;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+        }
+
+        .author-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 25px;
+            background-color: #2d313a;
+            display: block;
+            border: 3px solid var(--accent);
+        }
+
+        /* Pricing Card */
+        .pricing-section {
+            display: flex;
+            justify-content: center;
+        }
+
+        .price-card {
+            background: var(--card-bg);
+            border: 2px solid var(--accent);
+            border-radius: 24px;
+            padding: 45px 35px;
+            max-width: 440px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(255, 204, 0, 0.08);
+            position: relative;
+        }
+
+        .badge {
+            background: var(--accent);
+            color: #000;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .price-card h3 {
+            color: var(--accent);
+            font-size: 22px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .price {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .price span {
+            font-size: 16px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .price-features {
+            list-style: none;
+            text-align: left;
+            margin: 35px 0;
+            color: var(--text-main);
+            font-size: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .price-features li {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .price-features li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: 900;
+            font-size: 16px;
+        }
+
+        .btn {
+            display: block;
+            background: var(--accent);
+            color: #000;
+            text-decoration: none;
+            padding: 20px;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 17px;
+            text-transform: uppercase;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(255, 204, 0, 0.25);
+        }
+
+        .urgency {
+            margin-top: 25px;
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: left;
+            line-height: 1.6;
+            background: rgba(255, 254, 240, 0.03);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 204, 0, 0.1);
+        }
+
+        /* Fully Adaptive Social Links Footer Section */
+        .social-footer {
+            background: #121419;
+            padding: 80px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .social-footer h3 {
+            font-size: 24px;
+            margin-bottom: 35px;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: var(--card-bg);
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 16px 20px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 15px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .social-item:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-3px);
+            background: #1f232b;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-icon {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+            h2 {
+                font-size: 26px;
+                margin-bottom: 30px;
+            }
+            .hero {
+                padding: 80px 0 40px;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .hero p {
+                font-size: 17px;
+            }
+            .hero-image {
+                max-width: 320px;
+            }
+            .author-box {
+                padding: 35px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            h2 {
+                font-size: 22px;
+            }
+            .hero h1 {
+                font-size: 28px;
+            }
+            .hero-image {
+                max-width: 100%;
+                border-radius: 16px;
+            }
+            .features-list li {
+                padding: 18px;
+                font-size: 15px;
+                gap: 14px;
+            }
+            .emoji {
+                font-size: 24px;
+            }
+            .price-card {
+                padding: 30px 20px;
+            }
+            .price {
+                font-size: 30px;
+            }
+            .social-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .social-item {
+                padding: 14px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bosh ekran -->
+    <header class="hero">
+        <div class="container reveal">
+            <!-- Rasm joyi (src ichiga rasm manzilini yozing) -->
+            <img src="356789.jpeg" alt="Sardor" class="hero-image">
+            <div class="badge">Qabul ochildi</div>
+            <h1>"Baza"ni o'rganamiz!</h1>
+            <p>Bu intensiv o'quv kursi hisoblanadi. 4 oyda o'rganishingiz kerak bo'lgan ma'lumotlarni 2 oyda o'rganish imkoniyatingiz mavjud.</p>
+            <p style="color: var(--accent); font-weight: bold;">2 oy mobaynida kuniga kamida 2 soat vaqt ajratishingiz kerak bo'ladi.</p>
+        </div>
+    </header>
+
+    <!-- A nuqta -->
+    <section class="points">
+        <div class="container reveal">
+            <h2>Bu kurs kimlar uchun? Sizning A nuqtangiz:</h2>
+            <ul class="features-list">
+                <li class="negative"><span class="emoji">😢</span> Rus tilini chunasiz, lekin gapira olmaysiz</li>
+                <li class="negative"><span class="emoji">😵</span> Okonchaniyalarni to'g'ri qo'yishni bilmaysiz</li>
+                <li class="negative"><span class="emoji">🤐</span> "O'lik" so'z boyligingiz bor, ya'ni foydalana olmaysiz</li>
+                <li class="negative"><span class="emoji">😓</span> Juda uzoq o'ylaysiz va fikringizni to'liq yetqazib bera olmaysiz</li>
+                <li class="negative"><span class="emoji">🤯</span> Yetarlicha bazaga egasiz, lekin halihamon razgovorga chiqmadingiz</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- B nuqta -->
+    <section class="points">
+        <div class="container reveal">
+            <h2>Sizning B nuqtangiz (kursdan keyingi natijangiz):</h2>
+            <ul class="features-list">
+                <li><span class="emoji">🥰</span> Gapirishga uyalmaysiz va xatolar qilmaysiz</li>
+                <li><span class="emoji">🙂</span> Qiyin bo'lmagan so'zlar orqali o'z fikringizni to'la to'kis yetqazib bera olasiz</li>
+                <li><span class="emoji">😌</span> Rus tilida aksentingiz ancha kamayadi</li>
+                <li><span class="emoji">😎</span> Ishingizda hamkasblaringiz va do'stlaringiz Rus tilida darajangiz oshganini sezishadi</li>
+                <li><span class="emoji">👀</span> Aytmoqchi bo'lgan fikringizni o'ylanmasdan, qiyin so'zlardan foydalanmagan holda yetqazib bera olasiz</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Metodika -->
+    <section class="method">
+        <div class="container reveal">
+            <h2>Buning uchun biz nima qilamiz?</h2>
+            <ul class="features-list">
+                <li><span class="emoji">✅</span> Haftasiga 3 marta grammaticheskiy va 3 marta razgovorniy darslar</li>
+                <li><span class="emoji">✅</span> Darslar o'zim yozgan avtorskiy kitobim asosida bo'lib o'tadi</li>
+                <li><span class="emoji">✅</span> Shablon bo'yicha gap yodlamaysiz, faqat hayotda o'zingiz ishalata oladigan gaplariz</li>
+                <li><span class="emoji">✅</span> So'zlarni to'g'ri esizda qolishi va qo'llash uchun mnemonika metodikasidan foydalanamiz</li>
+                <li><span class="emoji">✅</span> REZULTATGA CHIQISHINGIZ UCHUN DARSLAARNI FAQAT VA FAQAT O'ZIM OLIB BORAMAN</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Muallif haqida -->
+    <section class="author">
+        <div class="container reveal">
+            <div class="author-box">
+                <!-- Muallif rasmi -->
+                <img src="8976.jpg" alt="Sardor" class="author-photo">
+                <h2>Men o'zi kimman?</h2>
+                <p>Mening ismim Sardor. Rus tilida «native» ya'ni носитель hisoblanaman. Millatim o'zbek. O'zim Toshkentda tug'ilib o'sganimga qaramasdan yoshligim Samarqand viloyati Urgut tumani Sovg'on qishlog'ida o'tgan.</p>
+                <p>17 yoshimda Rossiyaning Moskva shahriga, Московский финансовый университетga ta'lim olish maqsadida ketganman, 5 yil u yerda yashadim. Vatandoshlarimizga qaraganda tilni juda yaxshi bilganim uchun, ko'p joylarda meni «свой» qabul qilishar edi.</p>
+                <p>O'sha yerda vatandoshlarimga Rus tilini TEKINGA o'rgatishni boshlaganman. O'qitish tajribam 5 yil va shuning uchun qaysi metodika ishlashini, qaysisi ishlamasligini bilaman. Men o'quvchilarimni bekitmayman, natijalarini o'zingiz telegram guruhimdagi o'quvchilarimdan ko'rib so'rab bilishingiz mumkin.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kimlar uchun emas -->
+    <section class="not-for">
+        <div class="container reveal">
+            <h2>Kurs SIZ UCHUN EMAS agarda siz:</h2>
+            <ul class="features-list">
+                <li class="negative"><span class="emoji">❌</span> O'z fikringizni xatolarsiz yetqazib bera olsangiz</li>
+                <li class="negative"><span class="emoji">❌</span> Oson so'zlardan foydalangan holda TO'G'RI gap tuza olsangiz</li>
+                <li class="negative"><span class="emoji">❌</span> O'ylamasdan gapira olish darajasida bo'lsangiz</li>
+                <li class="negative"><span class="emoji">❌</span> "Bazaviy darajani bitirganman" deb hisoblasangiz</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Narx va Ofert -->
+    <section class="pricing" id="tarif">
+        <div class="container reveal pricing-section">
+            <div class="price-card">
+                <div class="badge">Intensiv</div>
+                <h3>"Baza"ni o'rganamiz (A1-A2)</h3>
+                
+                <div class="old-price">1 000 000 so'm</div>
+                <div class="price">800 000 so'm <br><span>/ 2 oy uchun</span></div>
+                
+                <ul class="price-features">
+                    <li>Talaffuzni to'g'rilash</li>
+                    <li>Gapirish uchun muhim bo'lgan grammatika (suvsiz)</li>
+                    <li>Ko'p uchraydigan xatolarni tahlil qilish</li>
+                    <li>Guruh darslari / Intensiv o'qish</li>
+                </ul>
+
+                <!-- TELEGRAM MANAGER LINK -->
+                <a href="https://t.me/YOUR_MANAGER_USERNAME?text=Assalomu%20alykum%20%22BAZA%22ni%20o%27rganamiz%20kursiga%20yozilmoqchi%20edim.%20To%27lov%20qilsam%20bo%27ladimi%3F" class="btn" target="_blank">To'lov qilish</a>
+                
+                <div class="urgency">
+                    1 iyundan 7 iyungacha — 800.000 so'm.<br>
+                    (Oyiga 400.000 so'mdan to'lasangiz ham bo'ladi).<br>
+                    7 iyundan 15 iyungacha narx 1.000.000 so'm bo'ladi.<br>
+                    <strong>Shoshiling, joylar chegaralangan!</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ijtimoiy tarmoqlar (Social Links Adaptive Grid) -->
+    <footer class="social-footer reveal">
+        <div class="container">
+            <h3>Mening ijtimoiy tarmoqlarim:</h3>
+            <div class="social-grid">
+                <!-- Instagram -->
+                <a href="https://instagram.com/gaplashilu_rustili" class="social-item" target="_blank">
+                    <svg class="social-icon" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                    </svg>
+                    Instagram
+                </a>
+                
+                <!-- Telegram Kanal -->
+                <a href="https://t.me/gaplashilu_rustili" class="social-item" target="_blank">
+                    <svg class="social-icon" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.46c.536-.196 1.006.128.832.935z"/>
+                    </svg>
+                    Telegram Kanal
+                </a>
+
+                <!-- Telegram Guruh -->
+                <a href="https://t.me/gaplashilu_chat" class="social-item" target="_blank">
+                    <svg class="social-icon" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.46c.536-.196 1.006.128.832.935z"/>
+                    </svg>
+                    Telegram Guruh
+                </a>
+
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/@sardoor18" class="social-item" target="_blank">
+                    <svg class="social-icon" viewBox="0 0 24 24">
+                        <path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    YouTube
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Анимации скролла -->
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 80;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+</html>
